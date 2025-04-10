@@ -22,6 +22,7 @@ from langchain_core.messages.ai import AIMessageChunk
 from langchain_core.messages.tool import ToolMessage
 from langgraph.checkpoint.memory import MemorySaver
 from langchain_core.runnables import RunnableConfig
+from bedrock_config import get_bedrock_model
 
 # Load environment variables (get API keys and settings from .env file)
 load_dotenv(override=True)
@@ -241,9 +242,8 @@ async def initialize_session(mcp_config=None):
             st.session_state.tool_count = len(tools)
             st.session_state.mcp_client = client
 
-            model = ChatAnthropic(
-                model="claude-3-7-sonnet-latest", temperature=0.1, max_tokens=20000
-            )
+            # Initialize the Bedrock model
+            model = get_bedrock_model()
             agent = create_react_agent(
                 model,
                 tools,
