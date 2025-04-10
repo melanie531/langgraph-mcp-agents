@@ -17,9 +17,9 @@ def get_bedrock_model():
     # Initialize and return Bedrock model
     return ChatBedrock(
         client=bedrock_client,
-        model_id="anthropic.claude-3-sonnet-20240229-v1:0",  # Latest Claude 3 Sonnet model
+        model_id="us.anthropic.claude-3-7-sonnet-20250219-v1:0",  # Latest Claude 3 Sonnet model
         model_kwargs={
-            "temperature": 0,
+            "temperature": 0.1,
             "max_tokens": 20000
         }
     ) 
